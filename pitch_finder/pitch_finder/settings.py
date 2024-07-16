@@ -38,12 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    "allauth",
-    "allauth.account",
-    "dj_rest_auth.registration",
     "rest_framework",
     "rest_framework.authtoken",
-    "dj_rest_auth",
     # Local apps
     "core",
     "api",
@@ -57,8 +53,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # Add the account middleware:
-    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "pitch_finder.urls"
@@ -150,24 +144,12 @@ REST_AUTH = {
     "OLD_PASSWORD_FIELD_ENABLED": True,
 }
 
-# allauth
-
-UNIQUE_EMAIL = True
-
-ACCOUNT_EMAIL_REQUIRED = True
-
-ACCOUNT_USERNAME_REQUIRED = False
-
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-
-ACCOUNT_EMAIL_VERIFICATION = "none"
-
 
 # rest_framework
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
         # Need this for drf api web interface.
         "rest_framework.authentication.SessionAuthentication",
     ),

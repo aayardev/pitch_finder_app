@@ -1,6 +1,18 @@
-from django.urls import path, include
+from django.urls import path
+from .views import (
+    pitch_list_api_view,
+    reservation_create_api_view,
+    signup_view,
+    login_view,
+)
 
 urlpatterns = [
-    path("auth/", include("dj_rest_auth.urls")),
-    path("auth/registration/", include("dj_rest_auth.registration.urls")),
+    path("signup/", signup_view, name="signup"),
+    path("login/", login_view, name="login"),
+    path("pitches/", pitch_list_api_view, name="pitch-list"),
+    path(
+        "reservations/",
+        reservation_create_api_view,
+        name="reservation-create",
+    ),
 ]
